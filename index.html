@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="一个轻量、温和的 16 型人格倾向测试。仅供娱乐与自我探索。" />
+  <meta name="theme-color" content="#f7f3ea" />
+  <title>向内看｜16 型人格倾向测试</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="向内看首页">
+      <span class="brand-mark">内</span>
+      <span>向内看</span>
+    </a>
+    <button class="text-button" id="aboutButton" type="button">关于测试</button>
+  </header>
+
+  <main>
+    <section class="screen hero active" id="homeScreen" aria-labelledby="heroTitle">
+      <div class="hero-copy">
+        <p class="eyebrow">16 TYPE PERSONALITY QUIZ</p>
+        <h1 id="heroTitle">认识自己的方式，<br><em>不止一种。</em></h1>
+        <p class="hero-description">用 40 个生活化的小问题，看看你在四组人格维度上的自然倾向。没有标准答案，只需选择更像平时的你。</p>
+        <div class="hero-actions">
+          <button class="primary-button" id="startButton" type="button">
+            开始测试 <span aria-hidden="true">→</span>
+          </button>
+          <span class="time-note">约 5 分钟 · 免费 · 无需登录</span>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="shape shape-coral"></div>
+        <div class="shape shape-blue"></div>
+        <div class="shape shape-yellow"></div>
+        <div class="center-card">
+          <span>YOU ARE</span>
+          <strong>MORE</strong>
+          <small>than four letters</small>
+        </div>
+      </div>
+      <div class="dimension-preview">
+        <div><b>E</b><span>能量来源</span><b>I</b></div>
+        <div><b>S</b><span>信息方式</span><b>N</b></div>
+        <div><b>T</b><span>决策偏好</span><b>F</b></div>
+        <div><b>J</b><span>生活态度</span><b>P</b></div>
+      </div>
+    </section>
+
+    <section class="screen quiz" id="quizScreen" aria-live="polite">
+      <div class="quiz-topline">
+        <button class="icon-button" id="backButton" type="button" aria-label="上一题">←</button>
+        <div class="progress-wrap">
+          <div class="progress-label"><span id="progressText">问题 1 / 40</span><span id="progressPercent">3%</span></div>
+          <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+        </div>
+        <button class="icon-button" id="closeButton" type="button" aria-label="退出测试">×</button>
+      </div>
+
+      <div class="question-card">
+        <p class="question-number" id="questionNumber">01</p>
+        <h2 id="questionText"></h2>
+        <p class="question-hint">凭第一感觉作答，不需要反复斟酌。</p>
+        <div class="answer-scale" id="answerScale" role="group" aria-label="选择符合程度">
+          <span class="scale-end agree-label">很符合</span>
+          <button data-score="3" class="answer-dot dot-xl agree" type="button" aria-label="非常符合"></button>
+          <button data-score="2" class="answer-dot dot-lg agree" type="button" aria-label="比较符合"></button>
+          <button data-score="1" class="answer-dot dot-md agree" type="button" aria-label="有点符合"></button>
+          <button data-score="0" class="answer-dot dot-sm neutral" type="button" aria-label="不确定"></button>
+          <button data-score="-1" class="answer-dot dot-md disagree" type="button" aria-label="有点不符合"></button>
+          <button data-score="-2" class="answer-dot dot-lg disagree" type="button" aria-label="比较不符合"></button>
+          <button data-score="-3" class="answer-dot dot-xl disagree" type="button" aria-label="非常不符合"></button>
+          <span class="scale-end disagree-label">不符合</span>
+        </div>
+        <p class="keyboard-hint">也可以使用键盘数字 1–7 作答</p>
+      </div>
+    </section>
+
+    <section class="screen result" id="resultScreen" aria-live="polite">
+      <div class="result-header">
+        <p class="eyebrow">YOUR PERSONALITY TENDENCY</p>
+        <p class="result-kicker">你的类型倾向是</p>
+        <h2 id="resultType">INFP</h2>
+        <p class="result-name" id="resultName">温柔的理想主义者</p>
+        <p class="result-summary" id="resultSummary"></p>
+      </div>
+
+      <div class="result-grid">
+        <article class="panel dimension-panel">
+          <h3>你的四维倾向</h3>
+          <div id="dimensionBars"></div>
+        </article>
+        <article class="panel traits-panel">
+          <h3>你的关键词</h3>
+          <div class="trait-cloud" id="traitCloud"></div>
+          <p class="result-note">人格不是标签，也会随情境与人生阶段变化。把结果当作一面镜子，而不是一只盒子。</p>
+        </article>
+      </div>
+
+      <div class="result-actions">
+        <button class="primary-button" id="copyButton" type="button">复制结果</button>
+        <button class="secondary-button" id="restartButton" type="button">重新测试</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="aboutDialog">
+    <button class="dialog-close" id="dialogClose" type="button" aria-label="关闭">×</button>
+    <p class="eyebrow">ABOUT THIS QUIZ</p>
+    <h2>先了解，再开始</h2>
+    <p>本测试参考常见的四维人格偏好模型，从能量来源、信息方式、决策偏好和生活态度四个方向进行探索。</p>
+    <p>它不是 MBTI® 官方测评，也不构成心理诊断、职业建议或医学意见。结果仅供娱乐与自我探索。</p>
+    <button class="primary-button" id="dialogStart" type="button">我知道了，开始测试</button>
+  </dialog>
+
+  <footer>© <span id="year"></span> 向内看 · 非官方人格倾向测试</footer>
+  <script src="app.js"></script>
+</body>
+</html>
